@@ -19,14 +19,14 @@ class CourseViewSet(ModelViewSet):
     def get_permissions(self):
         if self.action == "create":
             self.permission_classes = (IsAuthenticated, ~IsModerator,)
-        elif self.action in ["update", {"title": "new_title"}, "retrieve"]:
+        elif self.action in ["update", "partial_update", "retrieve"]:
             self.permission_classes = (IsAuthenticated, IsModerator | IsOwner,)
         elif self.action == "destroy":
             self.permission_classes = (IsAuthenticated, IsOwner,)
         return super().get_permissions()
 
     def get_queryset(self):
-        if self.request.user.IsModerator:
+        if self.request.user.filter(name="moders").exists():
             return super().get_queryset()
         else:
             return super().get_queryset().filter(owner=self.request.user)
@@ -50,7 +50,7 @@ class LessonListApiView(ListAPIView):
     permission_classes = (IsAuthenticated,)
 
     def get_queryset(self):
-        if self.request.user.IsModerator:
+        if self.request.user.filter(name="moders").exists():
             return super().get_queryset()
         else:
             return super().get_queryset().filter(owner=self.request.user)
