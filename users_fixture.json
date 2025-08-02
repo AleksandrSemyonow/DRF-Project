@@ -1,0 +1,164 @@
+[
+{
+    "model": "users.user",
+    "pk": 1,
+    "fields": {
+        "password": "",
+        "last_login": null,
+        "is_superuser": false,
+        "first_name": "",
+        "last_name": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-07-23T15:43:33.700Z",
+        "email": "example@mail.ru",
+        "phone": null,
+        "citi": null,
+        "avatar": "",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "users.user",
+    "pk": 2,
+    "fields": {
+        "password": "123qwe",
+        "last_login": null,
+        "is_superuser": false,
+        "first_name": "",
+        "last_name": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-07-23T16:16:37.672Z",
+        "email": "test@example.com",
+        "phone": null,
+        "citi": null,
+        "avatar": "",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "users.user",
+    "pk": 4,
+    "fields": {
+        "password": "qwerty",
+        "last_login": null,
+        "is_superuser": true,
+        "first_name": "",
+        "last_name": "",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2025-07-23T16:23:18.706Z",
+        "email": "example@mail.com",
+        "phone": null,
+        "citi": null,
+        "avatar": "",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "users.user",
+    "pk": 5,
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$JGua7EZxDcwqCbLYHNKEtK$XAXL1Pj3r5EePPLEg6WWtKzaRCJJ+gZD1KeGV7K7dm8=",
+        "last_login": null,
+        "is_superuser": false,
+        "first_name": "",
+        "last_name": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-07-27T16:27:19.156Z",
+        "email": "test@mail.ru",
+        "phone": null,
+        "citi": null,
+        "avatar": "",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "users.user",
+    "pk": 6,
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$qoR3sHQCKdy44LHy80en9K$aBCDuY8BSWI/UdQDm0sddI24DB7/NslKbZz1IsUm8BY=",
+        "last_login": null,
+        "is_superuser": false,
+        "first_name": "",
+        "last_name": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-07-28T07:41:24.083Z",
+        "email": "test2@mail.ru",
+        "phone": null,
+        "citi": null,
+        "avatar": "",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "users.user",
+    "pk": 7,
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$C8XAlufatZzZEJFVTFsglM$B8vYplhJkDcKaPjWCizfjfliATsvrI0PtEOHZpQ+u1I=",
+        "last_login": "2025-07-28T16:26:56Z",
+        "is_superuser": true,
+        "first_name": "",
+        "last_name": "",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2025-07-28T16:26:08Z",
+        "email": "admin@mail.ru",
+        "phone": null,
+        "citi": null,
+        "avatar": "",
+        "groups": [
+            1
+        ],
+        "user_permissions": []
+    }
+},
+{
+    "model": "users.user",
+    "pk": 8,
+    "fields": {
+        "password": "",
+        "last_login": null,
+        "is_superuser": false,
+        "first_name": "",
+        "last_name": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-07-28T16:38:10.991Z",
+        "email": "admin2@example.com",
+        "phone": null,
+        "citi": null,
+        "avatar": "",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "users.user",
+    "pk": 9,
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$S0WdsqW9iZpEJmpg6C477x$A7I9daWeSciGLSZfOntVsruJ3zfZxc+4H6JOB86Ty+k=",
+        "last_login": null,
+        "is_superuser": false,
+        "first_name": "",
+        "last_name": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-07-28T17:27:27.067Z",
+        "email": "test8@mail.ru",
+        "phone": null,
+        "citi": null,
+        "avatar": "",
+        "groups": [],
+        "user_permissions": []
+    }
+}
+]
