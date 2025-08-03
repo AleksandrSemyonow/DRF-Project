@@ -26,7 +26,7 @@ class CourseViewSet(ModelViewSet):
         return super().get_permissions()
 
     def get_queryset(self):
-        if self.request.user.filter(name="moders").exists():
+        if self.request.user.groups.filter(name="moders").exists():
             return super().get_queryset()
         else:
             return super().get_queryset().filter(owner=self.request.user)
@@ -50,7 +50,7 @@ class LessonListApiView(ListAPIView):
     permission_classes = (IsAuthenticated,)
 
     def get_queryset(self):
-        if self.request.user.filter(name="moders").exists():
+        if self.request.user.groups.filter(name="moders").exists():
             return super().get_queryset()
         else:
             return super().get_queryset().filter(owner=self.request.user)
