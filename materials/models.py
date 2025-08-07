@@ -96,3 +96,37 @@ class Lesson(models.Model):
     class Meta:
         verbose_name = "Урок"
         verbose_name_plural = "Уроки"
+
+
+class Subscription(models.Model):
+    owner = models.ForeignKey(
+        User,
+        blank=True,
+        null=True,
+        on_delete=models.CASCADE,
+        verbose_name="Владелец",
+        related_name="subscriptions"
+    )
+
+    course = models.ForeignKey(
+        Course,
+        blank=True,
+        null=True,
+        on_delete=models.CASCADE,
+        verbose_name="Курс",
+        related_name="subscriptions"
+    )
+
+    status = models.BooleanField(
+        default=False,
+        blank=True,
+        null=True,
+        verbose_name="Статус подписки"
+    )
+
+    class Meta:
+        verbose_name = "Подписка"
+        verbose_name_plural = "Подписки"
+
+    def __str__(self):
+        return f"{self.owner} - {self.course}"
