@@ -13,11 +13,15 @@ class Payment(models.Model):
     user = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
+        blank=True,
+        null=True,
         verbose_name="Пользователь",
         related_name="payment",
     )
 
     payment_data = models.DateField(
+        blank=True,
+        null=True,
         verbose_name="Дата оплаты",
     )
 
@@ -39,16 +43,30 @@ class Payment(models.Model):
         related_name="lessons"
     )
 
-    payment_amount = models.DecimalField(
-        max_digits=8,
-        decimal_places=2,
+    payment_amount = models.PositiveIntegerField(
         verbose_name="Сумма платежа"
     )
 
     payment_method = models.CharField(
         max_length=20,
+        blank=True,
+        null=True,
         choices=PAYMENT_CHOICE,
         verbose_name="Способ оплаты"
+    )
+
+    payment_url = models.URLField(
+        max_length=400,
+        blank=True,
+        null=True,
+        verbose_name="Ссылка на оплату"
+    )
+
+    payment_id = models.CharField(
+        max_length=100,
+        blank=True,
+        null=True,
+        verbose_name="Идентификатор платежа"
     )
 
     def __str__(self):
