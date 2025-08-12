@@ -7,6 +7,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from materials.paginations import CoursePagination, LessonPagination
+from materials.tasks import send_email_for_update_course
 
 
 class CourseViewSet(ModelViewSet):
@@ -34,6 +35,16 @@ class CourseViewSet(ModelViewSet):
             return super().get_queryset()
         else:
             return super().get_queryset().filter(owner=self.request.user)
+
+    def perform_update(self, serializer):
+        """
+        Отправить сообщение об изменении курса всем подписанным абонентам
+        :param serializer:
+        :return:
+        """
+        course = serializer.save()
+        course_id = course.id
+        send_email_for_update_course.delay(course_id)
 
 
 class LessonCreateApiView(CreateAPIView):

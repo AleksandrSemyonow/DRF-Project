@@ -9,3 +9,7 @@ coverage==7.10.2
 drf-yasg==1.21.10
 stripe==12.4.0
 forex-python==1.9.2
+eventlet==0.40.2
+celery==5.5.3
+redis==6.4.0
+django-celery-beat==2.8.1
