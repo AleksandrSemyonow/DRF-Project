@@ -98,7 +98,7 @@ class SubscriptionAPIView(APIView):
 
         course = Course.objects.get(pk=self.kwargs["pk"])
         user = self.request.user
-        subscription = Subscription.objects.filter(course=course, owner=user).first()
+        subscription, created = Subscription.objects.get_or_create(course=course, owner=user)
 
         if subscription.status:
             subscription.status = False
