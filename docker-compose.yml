@@ -3,7 +3,7 @@ version: '3.9'
 services:
   web:
     build: .
-    command: python manage.py runserver 0.0.0.0:8000
+    command: sh -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
     volumes:
       - .:/code
       - static_volume:/code/static
@@ -20,6 +20,25 @@ services:
       - postgres_data:/var/lib/postgresql/data
     env_file:
       - ./.env
+
+  redis:
+    image: redis:6
+    volumes:
+      - redis_data:/data
+    env_file:
+      - ./.env
+
+  celery:
+    build: .
+    command: >
+      bash -c "celery -A config worker --loglevel=info --pool=solo"
+    volumes:
+      - .:/app
+    env_file:
+      - ./.env
+    depends_on:
+      - redis
+      - db
 
 volumes:
   postgres_data:
