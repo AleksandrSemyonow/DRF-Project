@@ -40,6 +40,17 @@ services:
       - redis
       - db
 
+  celery-beat:
+    build: .
+    command: celery -A config beat --loglevel=info
+    volumes:
+      - .:/code
+      - celerybeat:/ver/lib/celery
+    working_dir: /code
+    env_file:
+      - ./.env
+
+
 volumes:
   postgres_data:
   static_volume:
