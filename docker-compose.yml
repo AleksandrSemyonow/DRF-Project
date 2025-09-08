@@ -1,56 +1,69 @@
 version: '3.9'
 
 services:
-  web:
-    build: .
-    command: sh -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
-    volumes:
-      - .:/code
-      - static_volume:/code/static
-    ports:
-      - "8000:8000"
-    depends_on:
-      - db
-    env_file:
-      - ./.env
-
-  db:
-    image: postgres:16
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    env_file:
-      - ./.env
 
   redis:
-    image: redis:6
-    volumes:
-      - redis_data:/data
-    env_file:
-      - ./.env
+    image: redis:latest
+    restart: on-failure
+    expose:
+      - '6379'
 
-  celery:
+  db:
+    image: postgres:16-alpine
+    restart: on-failure
+    env_file:
+      - .env
+    expose:
+      - '5432'
+    volumes:
+      - ./pg_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', '-c', 'pg_isready -U $POSTGRES_USER']
+      interval: 10s
+      retries: 5
+      timeout: 5s
+
+  app:
     build: .
-    command: >
-      bash -c "celery -A config worker --loglevel=info --pool=solo"
+    tty: true
+    ports:
+      - '8000:8000'
+    command: sh -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    depends_on:
+      db:
+        condition: service_healthy
     volumes:
       - .:/app
     env_file:
-      - ./.env
+      - .env
+
+  celery:
+    build: .
+    tty: true
+    command: celery -A config worker -l info
+    restart: on-failure
+    volumes:
+      - .:/app
     depends_on:
       - redis
       - db
+      - app
+    env_file:
+      - .env
 
   celery-beat:
     build: .
-    command: celery -A config beat --loglevel=info
+    tty: true
+    command: celery -A config beat -l info
+    restart: on-failure
     volumes:
-      - .:/code
-      - celerybeat:/ver/lib/celery
-    working_dir: /code
+      - .:/app
+    depends_on:
+      - redis
+      - db
+      - app
     env_file:
-      - ./.env
-
+      - .env
 
 volumes:
-  postgres_data:
-  static_volume:
+  pg_data:
