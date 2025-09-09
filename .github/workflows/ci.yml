@@ -46,7 +46,8 @@ jobs:
 
     steps:
     - name: Set up SSH
-      uses: webfactory/ssh-agent@v0
+      uses: appleboy/ssh-action@v0.1.10
+
       with:
         ssh-private-key: ${{ secrets.SSH_KEY }}
 
