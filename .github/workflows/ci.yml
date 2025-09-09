@@ -30,6 +30,8 @@ jobs:
 
     - name: Run tests
       run: python manage.py test
+      env:
+        SECRET_KEY: test_secret_key
 
   deploy:
     runs-on: ubuntu-latest
