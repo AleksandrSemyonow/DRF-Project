@@ -70,7 +70,7 @@ jobs:
 
       - name: Deploy to server
         run: |
-          ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }} >> "EQF"
+          ssh -t StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }} >> "EQF"
           docker pul ${{ secrets.DOCKER_HUB_USERNAME }}/myapp:${{ github.sha }}
           docker stop myapp || true
           docker rm myapp || true
