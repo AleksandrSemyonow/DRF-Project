@@ -51,12 +51,13 @@ jobs:
 #      - name: Log in in Docker hub
 #        run: echo ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }} | docker login ${{ secrets.DOCKER_HUB_USERNAME }} --password-stdin
 
-      - name: Build Docker image
-        run: docker build -t myapp:fa883d344a8f08cd37530647452867a3670ff68d
-
-      - name: Push Docker image in Docker hub
-        run: docker push ${{ secrets.DOCKER_HUB_USERNAME }}/myapp:${{ github.sha }}
-
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          file: ./Dockerfile
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/myapp:${{ github.sha }}
+          push: true
 
   deploy:
     needs: build
