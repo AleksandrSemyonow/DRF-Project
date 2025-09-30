@@ -48,14 +48,14 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v3
 
-#      - name: Log in in Docker hub
-#        run: echo ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }} | docker login ${{ secrets.DOCKER_HUB_USERNAME }} --password-stdin
+      - name: Log in to Docker Hub
+        run: echo ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }} | docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} --password-stdin
 
       - name: Build Docker image
-        run: docker build -t aleksandrsemyonow/myapp:b17548833c4b71c3c5d08617a9354e760425a798 .
+        run: docker build -t ${{ secrets.DOCKER_HUB_USERNAME }}/myapp:${{ github.sha }} .
 
-      - name: Push Docker image in Docker hub
-        run: docker push aleksandrsemyonow/myapp:b17548833c4b71c3c5d08617a9354e760425a798
+      - name: Push Docker image to Docker Hub
+        run: docker push ${{ secrets.DOCKER_HUB_USERNAME }}/myapp:${{ github.sha }}
 
 
   deploy:
