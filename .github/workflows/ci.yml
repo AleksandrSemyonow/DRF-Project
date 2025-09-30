@@ -55,7 +55,7 @@ jobs:
         run: docker build -t aleksandrsemyonow/myapp:b17548833c4b71c3c5d08617a9354e760425a798 .
 
       - name: Push Docker image in Docker hub
-        run: docker push -u aleksandrsemyonow/myapp:b17548833c4b71c3c5d08617a9354e760425a798
+        run: docker push aleksandrsemyonow/myapp:b17548833c4b71c3c5d08617a9354e760425a798 .
 
 
   deploy:
