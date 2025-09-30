@@ -55,7 +55,7 @@ jobs:
         run: docker build -t myapp:e57aea81195f48cf490af37dc5645a09f8fa58dd .
 
       - name: Push Docker image in Docker hub
-        run: docker push ${{ secrets.DOCKER_HUB_USERNAME }}/myapp:${{ github.sha }}
+        run: docker push AleksandrSemyonow/myapp:b17548833c4b71c3c5d08617a9354e760425a798
 
 
   deploy:
