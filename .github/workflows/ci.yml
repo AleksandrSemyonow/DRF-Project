@@ -52,7 +52,7 @@ jobs:
 #        run: echo ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }} | docker login ${{ secrets.DOCKER_HUB_USERNAME }} --password-stdin
 
       - name: Build Docker image
-        run: docker build -t myapp:e57aea81195f48cf490af37dc5645a09f8fa58dd .
+        run: docker build -t aleksandrsemyonow/myapp:b17548833c4b71c3c5d08617a9354e760425a798 .
 
       - name: Push Docker image in Docker hub
         run: docker push aleksandrsemyonow/myapp:b17548833c4b71c3c5d08617a9354e760425a798
